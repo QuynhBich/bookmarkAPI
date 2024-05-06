@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookmarkWeb.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240320170046_addTitleColumn")]
-    partial class addTitleColumn
+    [Migration("20240506060213_initdata")]
+    partial class initdata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -478,6 +478,14 @@ namespace BookmarkWeb.API.Migrations
                         .HasColumnName("deleted_by")
                         .HasComment("Data deleter id");
 
+                    b.Property<bool>("IsNoted")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("isNoted");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("longtext")
+                        .HasColumnName("note");
+
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("updated_at")
@@ -489,7 +497,6 @@ namespace BookmarkWeb.API.Migrations
                         .HasComment("Data updater id");
 
                     b.Property<long?>("UserId")
-                        .IsRequired()
                         .HasColumnType("bigint")
                         .HasColumnName("user_id");
 
@@ -794,14 +801,13 @@ namespace BookmarkWeb.API.Migrations
                     b.HasOne("BookmarkWeb.API.Database.Entities.Conversation", "Conversation")
                         .WithMany("Messages")
                         .HasForeignKey("ConversationId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BookmarkWeb.API.Database.Entities.User", "User")
                         .WithMany("Messages")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Conversation");
 

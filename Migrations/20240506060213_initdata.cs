@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookmarkWeb.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDatabase : Migration
+    public partial class initdata : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,16 +29,10 @@ namespace BookmarkWeb.API.Migrations
                     to = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
                     created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
                     created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
                     updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
                     deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
                 },
                 constraints: table =>
@@ -73,16 +67,10 @@ namespace BookmarkWeb.API.Migrations
                     recalling = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
                     created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
                     updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
                     deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
                 },
                 constraints: table =>
@@ -100,20 +88,7 @@ namespace BookmarkWeb.API.Migrations
                     name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     description = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
-                    created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
-                    updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
-                    deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -131,29 +106,53 @@ namespace BookmarkWeb.API.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     password = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    email = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                    email = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    phone = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     last_login = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
                     last_logout = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
                     created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
                     created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
                     updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
                     deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_users", x => x.id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Conversations",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "char(36)", nullable: false, comment: "Primary key", collation: "ascii_general_ci"),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    bookmark_id = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
+                    name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
+                    created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
+                    updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
+                    updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
+                    deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
+                    deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
+                    del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Conversations", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Conversations_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -165,20 +164,14 @@ namespace BookmarkWeb.API.Migrations
                     user_id = table.Column<long>(type: "bigint", nullable: false),
                     name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
                     created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
                     updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
                     deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
                 },
                 constraints: table =>
@@ -201,16 +194,10 @@ namespace BookmarkWeb.API.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
                     created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
                     updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
                     deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
                 },
                 constraints: table =>
@@ -245,16 +232,10 @@ namespace BookmarkWeb.API.Migrations
                     timeout = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
                     created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
                     created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
                     updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
                     deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
                 },
                 constraints: table =>
@@ -269,76 +250,32 @@ namespace BookmarkWeb.API.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Bookmarks",
-                columns: table => new
-                {
-                    id = table.Column<Guid>(type: "char(36)", nullable: false, comment: "Primary key", collation: "ascii_general_ci"),
-                    folder_id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    url = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    domain = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    note = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    image = table.Column<string>(type: "varchar(512)", maxLength: 512, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
-                    created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
-                    updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
-                    deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Bookmarks", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Bookmarks_folders_folder_id",
-                        column: x => x.folder_id,
-                        principalTable: "folders",
-                        principalColumn: "id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "messages",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "char(36)", nullable: false, comment: "Primary key", collation: "ascii_general_ci"),
-                    bookmarkId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    conversation_id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    user_id = table.Column<long>(type: "bigint", nullable: true),
                     content = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    note = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    isNoted = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
                     created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
-                    created_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data creator IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
                     updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
-                    updated_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data updater IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
                     deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
-                    deleted_ip = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, comment: "Data deleter IP")
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_messages", x => x.id);
                     table.ForeignKey(
-                        name: "FK_messages_Bookmarks_bookmarkId",
-                        column: x => x.bookmarkId,
-                        principalTable: "Bookmarks",
+                        name: "FK_messages_Conversations_conversation_id",
+                        column: x => x.conversation_id,
+                        principalTable: "Conversations",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -349,10 +286,75 @@ namespace BookmarkWeb.API.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "Bookmarks",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "char(36)", nullable: false, comment: "Primary key", collation: "ascii_general_ci"),
+                    conversation_id = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
+                    folder_id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    url = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    domain = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    note = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    image = table.Column<string>(type: "varchar(512)", maxLength: 512, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    title = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false, comment: "Data creation time"),
+                    created_by = table.Column<long>(type: "bigint", nullable: false, comment: "Data creator id"),
+                    updated_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data updated time"),
+                    updated_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data updater id"),
+                    deleted_at = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true, comment: "Data deleted time"),
+                    deleted_by = table.Column<long>(type: "bigint", nullable: true, comment: "Data deleter id"),
+                    del_flag = table.Column<bool>(type: "tinyint(1)", nullable: false, comment: "Flag check deleted data")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookmarks", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Bookmarks_Conversations_conversation_id",
+                        column: x => x.conversation_id,
+                        principalTable: "Conversations",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_Bookmarks_folders_folder_id",
+                        column: x => x.folder_id,
+                        principalTable: "folders",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_Bookmarks_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookmarks_conversation_id",
+                table: "Bookmarks",
+                column: "conversation_id",
+                unique: true);
+
             migrationBuilder.CreateIndex(
                 name: "IX_Bookmarks_folder_id",
                 table: "Bookmarks",
                 column: "folder_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookmarks_user_id",
+                table: "Bookmarks",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conversations_user_id",
+                table: "Conversations",
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_folders_user_id",
@@ -360,9 +362,9 @@ namespace BookmarkWeb.API.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_messages_bookmarkId",
+                name: "IX_messages_conversation_id",
                 table: "messages",
-                column: "bookmarkId");
+                column: "conversation_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_messages_user_id",
@@ -397,6 +399,9 @@ namespace BookmarkWeb.API.Migrations
                 name: "api_keys");
 
             migrationBuilder.DropTable(
+                name: "Bookmarks");
+
+            migrationBuilder.DropTable(
                 name: "call_api_logs");
 
             migrationBuilder.DropTable(
@@ -409,13 +414,13 @@ namespace BookmarkWeb.API.Migrations
                 name: "user_tokens");
 
             migrationBuilder.DropTable(
-                name: "Bookmarks");
+                name: "folders");
+
+            migrationBuilder.DropTable(
+                name: "Conversations");
 
             migrationBuilder.DropTable(
                 name: "Roles");
-
-            migrationBuilder.DropTable(
-                name: "folders");
 
             migrationBuilder.DropTable(
                 name: "users");
