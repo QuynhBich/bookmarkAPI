@@ -47,13 +47,11 @@ builder.Services.AddAuthentication(options =>
 services.AddCors(options =>
 {
     options.AddPolicy(name: "CorsPolicy",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:3000")
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-        });
+        builder => builder
+                .SetIsOriginAllowed((host) => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
 });
 // services.AddCors(options =>
 // {
