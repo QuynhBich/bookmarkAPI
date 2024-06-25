@@ -88,7 +88,7 @@ namespace BookmarkWeb.API.Models.Login
                 else
                 {
                     // Tạo token và lưu các thông tin cần thiết khi login
-                    _logger.LogInformation($"[{_className}][{method}] Tạo token cho trang TRN");
+                    _logger.LogInformation($"[{_className}][{method}] Tạo token cho trang");
                     string token = Security.GenerationJWTCode(new JwtData()
                     {
                         UserId = userDB.Id,
@@ -104,7 +104,7 @@ namespace BookmarkWeb.API.Models.Login
                         Timeout = DateTimeOffset.Now.AddMinutes(Constants.API_EXPIRES_MINUTE),
                     };
                     _context.UserTokens.Add(userToken);
-
+        
                     userDB.LastLogin = DateTimeOffset.Now;
 
                     result.Data.Add("token", token);

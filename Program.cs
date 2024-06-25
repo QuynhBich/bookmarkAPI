@@ -134,7 +134,7 @@ services.AddSwaggerGen(c =>
 });
 builder.Services.AddHttpClient();
 
-var connectionString = builder.Configuration.GetConnectionString("AzureDB");
+var connectionString = builder.Configuration.GetConnectionString("Default");
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 34));
 services.AddDbContext<DataContext>(
     dbContextOptions => dbContextOptions
